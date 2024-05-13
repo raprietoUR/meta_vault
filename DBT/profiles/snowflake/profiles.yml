@@ -1,0 +1,13 @@
+meta_vault:
+  outputs:
+    dev:
+      type:       snowflake
+      account:    "{{ env_var('SNOW_ACCOUNT') }}"
+      user:       "{{ env_var('SNOW_USER') }}"
+      password:   "{{ env_var('SNOW_PASSWORD') }}"
+      database:   "{{ env_var('SNOW_DATABASE') }}"
+      schema:     "{{ env_var('SNOW_SCHEMA') }}"
+      role:       "{{ env_var('SNOW_ROLE') }}"
+      warehouse:  "{{ env_var('SNOW_WAREHOUSE') }}"
+      threads:    4
+  target: dev

@@ -1,0 +1,14 @@
+version: '3'
+services:
+  dbt:
+    image: dv_gen
+    tty: true
+    volumes:
+      -  ./:/dv_gen
+    command: bash -c "echo Hello World"  
+    build: 
+      dockerfile: Dockerfile
+volumes:
+  db:
+    driver: local
+

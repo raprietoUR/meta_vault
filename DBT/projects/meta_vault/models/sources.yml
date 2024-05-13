@@ -1,0 +1,83 @@
+version: 2
+
+sources:
+  - name: EDW_RAW_DATA
+    schema: raw_data
+    tables:
+      - name: datasets_fields_tmp
+        identifier: datasets_fields_tmp
+      - name: datasets_segments_tmp
+        identifier: datasets_segments_tmp
+      - name: datasets_tmp
+        identifier: datasets_tmp
+      - name: environment_connections_tmp
+        identifier: environment_connections_tmp
+      - name: environments_tmp
+        identifier: environments_tmp
+      - name: model_tmp
+        identifier: model_tmp
+      - name: relationships_tmp
+        identifier: relationships_tmp
+      - name: model_load_runs_tmp
+        description: initial table for datasets
+        identifier: model_load_runs_tmp
+
+  # - name: EDW_DO_META_RDV
+  #   schema: do_meta_rdv
+  #   tables:
+  #     - name: lnk_dataset_run_log
+  #       description: Log table
+  #       identifier: lnk_dataset_run_log
+  #     - name: satl_dataset_model_environment_tenant_sql
+  #       description: SQL adapted templates satelite
+  #       identifier: satl_dataset_model_environment_tenant_sql
+  #     - name: satl_dataset_run_log
+  #       description: Satl Log table
+  #       identifier: satl_dataset_run_log
+  #     - name: satl_dataset_validation_log
+  #       description: Satl Log table
+  #       identifier: satl_dataset_validation_log
+  #     - name: satl_dataset_model_environment_tenant_sql_2
+  #       description: Satl Log table
+  #       identifier: satl_dataset_model_environment_tenant_sql_2
+
+  # - name: EDW_DO_META_IM
+  #   schema: do_meta_im
+  #   tables:
+  #     - name: dim_dataset_static
+  #       description: static_table 
+  #       identifier: dim_dataset_static
+  #     - name: dim_dataset_load_static
+  #       description: load_static table
+  #       identifier: dim_dataset_load_static
+  #     - name: dim_dataset_load_element
+  #       description: Dim element table
+  #       identifier: dim_dataset_load_element
+  #     - name: dim_dataset_validation
+  #       description: Dim validation table
+  #       identifier: dim_dataset_validation
+  #     - name: dim_dataset_validation_threshold
+  #       description: Dim validation threshold table 
+  #       identifier: dim_dataset_validation_threshold        
+  #     - name: dim_valid_format_cast
+  #       description: Dim Valid format table 
+  #       identifier: dim_valid_format_cast
+  #     - name: dim_model
+  #       description: Dim model element table
+  #       identifier: dim_model   
+  #     - name : dim_model_load_pattern
+  #       description: Dim model pattern table
+  #       identifier:  dim_model_load_pattern
+  #     - name : dim_dataset_load
+  #       description: Dim dataset table
+  #       identifier:  dim_dataset_load
+
+  - name: INFORMATION_SCHEMA
+    schema: information_schema
+    tables:
+      - name: tables
+        description: information schema table view
+        identifier: tables
+      - name: columns
+        description: information schema table view
+        identifier: columns

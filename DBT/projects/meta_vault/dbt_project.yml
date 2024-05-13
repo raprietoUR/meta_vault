@@ -1,0 +1,109 @@
+
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: 'meta_vault'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'meta_vault'
+
+# These configurations specify where dbt should look for different types of files.
+# The `model-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+vars:
+  cod_model: COD_MODEL
+  cod_type_run: COD_TYPE_RUN
+  cod_environment: COD_ENVIRONMENT
+  platform: PLATFORM
+  replace: REPLACE
+  sw_debug: SW_DEBUG
+  sw_validations: "FALSE"
+  cod_remote_bbdd: "{{ env_var('SNOW_DATABASE_REMOTE') }}"
+  cod_remote_schema: "{{ env_var('SNOW_SCHEMA_REMOTE') }}"
+
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+# In this example config, we tell dbt to build all models in the example/ directory
+# as tables. These settings can be overridden in the individual model files
+# using the `{{ config(...) }}` macro.
+models:
+  meta_vault:
+    +database: edw
+    # Config indicated by + and applies to all files under models/example/
+    RAW_DATA:
+      +materialized: incremental
+      RAW_INIT:
+        alias: raw_init
+        +tags:
+          - raw
+          - snowflake
+
+      RAW_END:
+        alias: raw_end
+        +tags:
+          - raw
+          - snowflake
+
+      RAW_LOAD_DATASETS_FIELDS:
+        alias: datasets_fields
+        +tags:
+          - raw
+          - snowflake
+
+      RAW_LOAD_DATASETS_SEGMENTS:
+        alias: datasets_segments
+        +tags:
+          - raw
+          - snowflake
+
+      RAW_LOAD_DATASETS:
+        alias: datasets
+        +tags:
+          - raw
+          - snowflake
+
+      RAW_LOAD_ENVIRONMENT_CONNECTIONS:
+        alias: environment_connections
+        +tags:
+          - raw
+          - snowflake
+
+      RAW_LOAD_ENVIRONMENTS:
+        alias: environments
+        +tags:
+          - raw
+          - snowflake
+
+      RAW_LOAD_MODEL_LOAD_RUNS:
+        alias: model_load_runs
+        +tags:
+          - raw
+          - snowflake
+
+      RAW_LOAD_MODEL:
+        alias: model
+        +tags:
+          - raw
+          - snowflake
+
+      RAW_LOAD_RELATIONSHIPS:
+        alias: relationships
+        +tags:
+          - raw
+          - snowflake

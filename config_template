@@ -1,0 +1,41 @@
+[connections.dv_init]
+accountname = [ACCOUNT]   # Account name to connect to Snowflake.
+username = [USERNAME]      # User name in the account. Optional.
+password = [PASSWORD]      # User password. Optional.
+dbname = [DATABASE]        # Default database. Optional.
+schemaname = [SCHEMA]    # Default schema. Optional.
+warehousename = [WAREHOUSE] # Default warehouse. Optional.
+#rolename = [ROLE]      # Default role. Optional.
+#authenticator = <string> # Authenticator: 'snowflake', 'externalbrowser' (to use any IdP and a web browser),  https://<okta_account_name>.okta.com (to use Okta natively), 'oauth' to authenticate using OAuth.
+
+[connections.dv]
+accountname = [ACCOUNT]   # Account name to connect to Snowflake.
+username = [USERNAME]      # User name in the account. Optional.
+password = [PASSWORD]      # User password. Optional.
+dbname = [DATABASE]        # Default database. Optional.
+schemaname = [SCHEMA]    # Default schema. Optional.
+warehousename = [WAREHOUSE] # Default warehouse. Optional.
+rolename = [ROLE]      # Default role. Optional.
+#authenticator = <string> # Authenticator: 'snowflake', 'externalbrowser' (to use any IdP and a web browser),  https://<okta_account_name>.okta.com (to use Okta natively), 'oauth' to authenticate using OAuth.
+
+
+[connections.remote]
+accountname = [ACCOUNT_REMOTE]   # Account name to connect to Snowflake.
+username = [USERNAME_REMOTE]      # User name in the account. Optional.
+password = [PASSWORD_REMOTE]      # User password. Optional.
+dbname = [DATABASE_REMOTE]        # Default database. Optional.
+schemaname = [SCHEMA_REMOTE]    # Default schema. Optional.
+warehousename = [WAREHOUSE_REMOTE] # Default warehouse. Optional.
+rolename = [ROLE]      # Default role. Optional.
+#authenticator = <string> # Authenticator: 'snowflake', 'externalbrowser' (to use any IdP and a web browser),  https://<okta_account_name>.okta.com (to use Okta natively), 'oauth' to authenticate using OAuth.
+
+
+[variables]
+[options]
+auto_completion = True
+log_file = ../INIT_DO_META/DEPLOY/snowsql_rt.log
+log_level = ERROR
+timing = True
+output_format = psql
+key_bindings = emacs
+

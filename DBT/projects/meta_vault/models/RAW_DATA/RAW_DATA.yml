@@ -1,0 +1,34 @@
+version: 2
+models:
+- name: RAW_INIT
+  description: Initiates the phase
+- name: RAW_END
+- name: RAW_LOAD_DATASETS
+  description: This table contains information about all the datasets and their features.
+    It has data from all the executions and comes from the DA_03_DATASETS tab of the
+    use case metadata excel.
+- name: RAW_LOAD_DATASETS_FIELDS
+  description: This table contains information about business keys, sequence and segment
+    fields. It has data from all executions and comes from the DA_07_DATASETS_FIELDS
+    tab of the use case metadata excel.
+- name: RAW_LOAD_DATASETS_SEGMENTS
+  description: This table contains information about the division of a dataset into
+    segments (to define the satellites). It has data from all the executions and comes
+    from the DA_04_DATASET_SEGMENTS tab of the use case metadata excel.
+- name: RAW_LOAD_ENVIRONMENTS
+  description: Table that defines the different environments where the artifact could
+    be deployed. It has data from all executions and comes from the EV_01_ENVIRONMENTS
+    tab of the use case metadata excel.
+- name: RAW_LOAD_ENVIRONMENT_CONNECTIONS
+  description: This table relates the connections with the environments that they
+    belong to. It has data from all the executions and comes from the EV_05_ENVIRONMENT_CONNECTIONS
+    tab of the use case metadata excel.
+- name: RAW_LOAD_MODEL
+  description: This table has information about the different models executed. It
+    has data from all the executions and comes from the DA_01_MODEL tab of the use
+    case metadata excel.
+- name: RAW_LOAD_RELATIONSHIPS
+  description: This table contains the datasets that are used as links and how the
+    datasets are related to each other. It has data from all the executions and comes
+    from the DA_05_RELATIONSHIPS tab of the use case metadata excel.
+
