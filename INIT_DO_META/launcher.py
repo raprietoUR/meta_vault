@@ -256,7 +256,7 @@ var_file_exec = " -f DEPLOY/"+deploy_folder+"/"
 
 
 #BLOQUE 1
-if mod.upper() not in ('DEPLOY', 'TEMPLATES'):
+if mod.upper() not in ('TEMPLATES'):
     if not os.path.isdir('DEPLOY'):
         print ("[", datetime.now(), "] [", step, "/",total_steps, "]", "Creación de la carpeta DEPLOY")
         if  os.system("mkdir DEPLOY") != 0:

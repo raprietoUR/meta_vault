@@ -1,18 +1,11 @@
-
+-- back compat for old kwarg name
   
+  begin;
     
 
-        create or replace transient table edw.gen_phase.environment_connections
-         as
+        insert into edw.gen_phase.environment_connections ("COD_ENVIRONMENT", "COD_CONNECTION", "DES_ENVIRONMENT_CONNECTION")
         (
-
-  
-  
-  
-SELECT ENV.COD_ENVIRONMENT,CON.COD_CONNECTION,REPLACE(ENV.DESC_ENVIRONMENT_CONNECTION,CON.COD_CONNECTION_BDK,CON.COD_CONNECTION) DES_ENVIRONMENT_CONNECTION
-FROM  edw.gen_phase.environment_connections_tmp ENV
-INNER JOIN  edw.gen_phase.connections CON
-ON ENV.COD_CONNECTION=CON.COD_CONNECTION_BDK
+            select "COD_ENVIRONMENT", "COD_CONNECTION", "DES_ENVIRONMENT_CONNECTION"
+            from edw.gen_phase.environment_connections__dbt_tmp
         );
-      
-  
+    commit;

@@ -1,19 +1,11 @@
-
+-- back compat for old kwarg name
   
+  begin;
     
 
-        create or replace transient table edw.gen_phase.setconnection_connections
-         as
+        insert into edw.gen_phase.setconnection_connections ("COD_SETCONNECTION", "COD_CONNECTION", "DD", "DES_SETCONNECTION_CONNECTION")
         (
-
-  
-  
-  
-SELECT ST.COD_SETCONNECTION,CON.COD_CONNECTION,ST.DES_SETCONNECTION_CONNECTION DD,
-REPLACE(ST.DES_SETCONNECTION_CONNECTION,CON.COD_CONNECTION_BDK||' Connection',CON.COD_CONNECTION||' Connection') DES_SETCONNECTION_CONNECTION,
-FROM  edw.gen_phase.setconnection_connections_tmp ST
-INNER JOIN  edw.gen_phase.connections CON
-ON ST.COD_CONNECTION=CON.COD_CONNECTION_BDK
+            select "COD_SETCONNECTION", "COD_CONNECTION", "DD", "DES_SETCONNECTION_CONNECTION"
+            from edw.gen_phase.setconnection_connections__dbt_tmp
         );
-      
-  
+    commit;

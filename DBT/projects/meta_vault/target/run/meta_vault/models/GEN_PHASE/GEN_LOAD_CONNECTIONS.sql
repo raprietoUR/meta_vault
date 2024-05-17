@@ -1,17 +1,11 @@
-
+-- back compat for old kwarg name
   
+  begin;
     
 
-        create or replace transient table edw.gen_phase.connections
-         as
+        insert into edw.gen_phase.connections ("COD_CONNECTION_BDK", "COD_CONNECTION", "COD_AREA_PHASE", "COD_TYPE_PHASE", "DES_CONNECTION", "COD_PATH_0", "COD_PATH_1", "COD_PATH_2", "COD_PATH_3")
         (
-
-  
-  
-
-SELECT COD_CONNECTION COD_CONNECTION_BDK,COD_CONNECTION ||'||'||COD_AREA_PHASE||'||'||COD_TYPE_PHASE COD_CONNECTION,COD_AREA_PHASE,COD_TYPE_PHASE,
-DES_CONNECTION,COD_PATH_0,COD_PATH_1,COD_PATH_2,COD_PATH_3
-FROM  edw.gen_phase.connections_tmp
+            select "COD_CONNECTION_BDK", "COD_CONNECTION", "COD_AREA_PHASE", "COD_TYPE_PHASE", "DES_CONNECTION", "COD_PATH_0", "COD_PATH_1", "COD_PATH_2", "COD_PATH_3"
+            from edw.gen_phase.connections__dbt_tmp
         );
-      
-  
+    commit;
