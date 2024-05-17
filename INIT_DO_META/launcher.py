@@ -29,13 +29,7 @@ dic_models = {
 
 do_meta = ['RAW', 'GEN', 'TEM']
 
-dic_snw = {
-    "{{varchar_max}}": "VARCHAR(16777216)",
-    "{{num}}": "NUMBER",
-    "{{ts_ntz}}": "TIMESTAMPNTZ",
-    "TIMESTAMP(6)": "TIMESTAMPNTZ",
-    "COMMIT;" : ""
-}
+
 
 
 debug = "FALSE"
