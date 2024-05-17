@@ -1,0 +1,4 @@
+"COD_SETCONNECTION","COD_DATASET","COD_TYPE","COD_MODEL","COD_TYPE_LOAD_SOURCE","COD_DATASET_ORIGIN","DESC"
+"EDW_LAND_RAW","DS_CUSTOMER","HUB","EDW_TFG","TABLE","CUSTOMER","Dataset para los clientes"
+"EDW_LAND_RAW","DS_NATION","HUB","EDW_TFG","STREAM","NATION","Dataset con todos los paises"
+"EDW_LAND_RAW","DS_CUS_NATION","LINK","EDW_TFG","TABLE","CUS_NAITON","Dataset con los paises de todos los clientes"

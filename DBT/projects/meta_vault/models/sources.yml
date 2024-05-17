@@ -21,13 +21,27 @@ sources:
       - name: model_load_runs_tmp
         description: initial table for datasets
         identifier: model_load_runs_tmp
+      - name: connections_tmp
+        description: initial table for connections
+        identifier: connections_tmp
+      - name: setconnection_connections_tmp
+        description: initial table for connections
+        identifier: setconnection_connections_tmp
+      - name: datasets_fields_columns_tmp
+        description: initial table for connections
+        identifier: datasets_fields_columns_tmp
 
-  # - name: EDW_DO_META_RDV
-  #   schema: do_meta_rdv
-  #   tables:
-  #     - name: lnk_dataset_run_log
-  #       description: Log table
-  #       identifier: lnk_dataset_run_log
+
+
+  - name: EDW_GEN_PHASE
+    schema: gen_phase
+    tables:
+      - name: datasets_0
+        description: Log table
+        identifier: lnk_dataset_run_log
+      - name: datasets_fields_columns
+        description: initial table for connections
+        identifier: datasets_fields_columns
   #     - name: satl_dataset_model_environment_tenant_sql
   #       description: SQL adapted templates satelite
   #       identifier: satl_dataset_model_environment_tenant_sql

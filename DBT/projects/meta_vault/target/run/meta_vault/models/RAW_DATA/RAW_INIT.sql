@@ -2,7 +2,7 @@
   
     
 
-        create or replace transient table edw.RAW_DATA.raw_init
+        create or replace transient table edw.raw_data.raw_init
          as
         (
 

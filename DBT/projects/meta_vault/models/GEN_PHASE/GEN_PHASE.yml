@@ -1,0 +1,10 @@
+version: 2
+models:
+- name: GEN_INIT
+  description: Initiates the phase
+- name: GEN_END
+- name: GEN_LOAD_DATASETS_0
+  description: This table contains information about all the datasets and their features.
+    It has data from all the executions and comes from the DA_03_DATASETS tab of the
+    use case metadata excel.
+

@@ -1,4 +1,4 @@
-{{ config(
+{{ config(schema='raw_data',
   alias='datasets_segments',
   materialized='incremental') }}
 -- depends_on: {{ ref('RAW_INIT') }}

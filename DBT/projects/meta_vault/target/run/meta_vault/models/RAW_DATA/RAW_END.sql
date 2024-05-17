@@ -2,11 +2,11 @@
   
     
 
-        create or replace transient table edw.RAW_DATA.raw_end
+        create or replace transient table edw.raw_data.raw_end
          as
         (
 
---depends_on: edw.RAW_DATA.datasets,edw.RAW_DATA.datasets_fields,edw.RAW_DATA.datasets_segments,edw.RAW_DATA.environment_connections,edw.RAW_DATA.environments,edw.RAW_DATA.model,edw.RAW_DATA.relationships
+--depends_on: edw.raw_data.datasets,edw.raw_data.datasets_fields,edw.raw_data.datasets_segments,edw.raw_data.environment_connections,edw.raw_data.environments,edw.raw_data.model,edw.raw_data.relationships
 
 
 select null def

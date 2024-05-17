@@ -1,17 +1,9 @@
-
-# Name your project! Project names should contain only lowercase characters
-# and underscores. A good package name should reflect your organization's
-# name or the intended use of these models
 name: 'meta_vault'
 version: '1.0.0'
 config-version: 2
 
-# This setting configures which "profile" dbt uses for this project.
 profile: 'meta_vault'
 
-# These configurations specify where dbt should look for different types of files.
-# The `model-paths` config, for example, states that models in this project can be
-# found in the "models/" directory. You probably won't need to change these!
 model-paths: ["models"]
 analysis-paths: ["analyses"]
 test-paths: ["tests"]
@@ -19,8 +11,8 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
-target-path: "target"  # directory which will store compiled SQL files
-clean-targets:         # directories to be removed by `dbt clean`
+target-path: "target"
+clean-targets:
   - "target"
   - "dbt_packages"
 
@@ -32,20 +24,12 @@ vars:
   replace: REPLACE
   sw_debug: SW_DEBUG
   sw_validations: "FALSE"
-  cod_remote_bbdd: "{{ env_var('SNOW_DATABASE_REMOTE') }}"
-  cod_remote_schema: "{{ env_var('SNOW_SCHEMA_REMOTE') }}"
+  cod_remote_bbdd: "DATAGBAR_DEV_EDS_EDW"
+  cod_remote_schema: "RAW_DATA"
 
-
-# Configuring models
-# Full documentation: https://docs.getdbt.com/docs/configuring-models
-
-# In this example config, we tell dbt to build all models in the example/ directory
-# as tables. These settings can be overridden in the individual model files
-# using the `{{ config(...) }}` macro.
 models:
   meta_vault:
     +database: edw
-    # Config indicated by + and applies to all files under models/example/
     RAW_DATA:
       +materialized: incremental
       RAW_INIT:
@@ -106,4 +90,82 @@ models:
         alias: relationships
         +tags:
           - raw
+          - snowflake
+      RAW_LOAD_COLUMNS:
+        alias: datasets_fields_columns
+        +tags:
+          - raw
+          - snowflake
+      RAW_LOAD_SETCONNECTION_CONN:
+        alias: setconnection_connections
+        +tags:
+          - raw
+          - snowflake
+
+    GEN_PHASE:
+      +materialized: incremental
+      GEN_INIT:
+        alias: npsa_init
+        +tags:
+          - gen
+          - snowflake
+      GEN_END:
+        alias: npsa_end
+        +tags:
+          - gen
+          - snowflake
+      GEN_LOAD_DATASETS_0:
+        alias: datasets_0
+        +tags:
+          - gen
+          - snowflake
+      GEN_LOAD_DATASETS_FIELDS_0:
+        alias: datasets_fields_0
+        +tags:
+          - gen
+          - snowflake
+      GEN_REFRESH_MODEL_LOAD_RUNS_LAST:
+        alias: model_load_runs_last
+        +tags:
+          - gen
+          - snowflake
+      GEN_LOAD_COLUMNS:
+        alias: datasets_fields_columns
+        +tags:
+          - gen
+          - snowflake
+      GEN_LOAD_CONNECTIONS_TMP:
+        alias: connections_tmp
+        +tags:
+          - gen
+          - snowflake
+      GEN_LOAD_CONNECTIONS:
+        alias: connections
+        +tags:
+          - gen
+          - snowflake
+      GEN_LOAD_SETCONNECTION_CONN_TMP:
+        alias: setconnection_connections_tmp
+        +tags:
+          - gen
+          - snowflake
+      GEN_LOAD_SETCONNECTION_CONN:
+        alias: setconnection_connections
+        +tags:
+          - gen
+          - snowflake
+      GEN_LOAD_ENVIRONMENT_CONN_TMP:
+        alias: environment_connections_tmp
+        +tags:
+          - gen
+          - snowflake
+      GEN_LOAD_ENVIRONMENT_CONN:
+        alias: environment_connections
+        +tags:
+          - gen
+          - snowflake
+      GEN_LOAD_DATASETS_SEGMENTS:
+        alias: datasets_segments
+        +tags:
+          - gen
           - snowflake

@@ -1,4 +1,4 @@
-{{ config(
+{{ config(schema='raw_data',
   alias='relationships',
   materialized='incremental') }}
 -- depends_on: {{ ref('RAW_INIT') }}

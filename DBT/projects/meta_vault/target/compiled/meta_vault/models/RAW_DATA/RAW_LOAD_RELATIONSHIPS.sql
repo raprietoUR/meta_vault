@@ -1,5 +1,5 @@
 
--- depends_on: edw.RAW_DATA.raw_init
+-- depends_on: edw.raw_data.raw_init
 SELECT 		
 	T.*,
 	M.ID_MODEL_RUN,
@@ -11,6 +11,6 @@ LEFT JOIN (SELECT
 			DT_MODEL_LOAD,
 			ID_MODEL_RUN,
 			ROW_NUMBER() OVER (PARTITION BY COD_MODEL ORDER BY DT_MODEL_LOAD DESC) ULTIMO_REG
-		FROM  edw.RAW_DATA.model_load_runs WHERE COD_TYPE_RUN='DEPLOY') M
-ON M.COD_MODEL = 'DV_TFG'
+		FROM  edw.raw_data.model_load_runs WHERE COD_TYPE_RUN='DEPLOY') M
+ON M.COD_MODEL = 'EDW_TFG'
 AND M.ULTIMO_REG = 1

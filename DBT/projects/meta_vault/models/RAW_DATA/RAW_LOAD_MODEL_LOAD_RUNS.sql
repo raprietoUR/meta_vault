@@ -1,4 +1,4 @@
-{{ config(
+{{ config(schema='raw_data',
   alias='model_load_runs',
   materialized='incremental') }}
 

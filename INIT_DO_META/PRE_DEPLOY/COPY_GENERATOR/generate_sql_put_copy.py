@@ -81,10 +81,10 @@ if log:
     print("[", datetime.now() , "] [", script_def, "] Generation of sql process Started")
 
 ####################################################### USE CASE METADATA ENVIRONMENT VARIABLES
-LIST_EV       = { 'environments','environment_connections'}
-SHEET_LIST_EV = { 'environments':'ENVIRONMENTS', 'environment_connections':'ENVIRONMENT_CONNECTIONS'}
-FILE_LIST_EV  = { 'environments':'ENVIRONMENTS.csv', 'environment_connections':'ENVIRONMENT_CONNECTIONS.csv'}
-TABLE_LIST_EV = { 'environments':'ENVIRONMENTS_TMP', 'environment_connections':'ENVIRONMENT_CONNECTIONS_TMP'}
+LIST_EV       = { 'environments','connections','environment_connections','setconnection_connections' }
+SHEET_LIST_EV = { 'environments':'ENVIRONMENTS', 'connections':'CONNECTIONS', 'environment_connections':'ENVIRONMENT_CONNECTIONS', 'setconnection_connections':'SETCONNECTION_CONNECTIONS'}
+FILE_LIST_EV  = { 'environments':'ENVIRONMENTS.csv', 'connections':'CONNECTIONS.csv','environment_connections':'ENVIRONMENT_CONNECTIONS.csv', 'setconnection_connections':'SETCONNECTION_CONNECTIONS.csv'}
+TABLE_LIST_EV = { 'environments':'ENVIRONMENTS_TMP', 'connections':'CONNECTIONS_TMP','environment_connections':'ENVIRONMENT_CONNECTIONS_TMP', 'setconnection_connections':'SETCONNECTION_CONNECTIONS_TMP'}
 
 # ####################################################### USE CASE METADATA VALIDATION VARIABLES
 # LIST_DV       = { 'data_validation','data_validation_threshold'}
