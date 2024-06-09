@@ -82,7 +82,7 @@ if "--help" in sys.argv:
 start_time = time.time() #STARTING PROCESS
 print("[", datetime.now() , "] RUN_DV_FW_MAIN.py Process Started")
 
-  
+
 
 if "-c" in sys.argv:
     try:

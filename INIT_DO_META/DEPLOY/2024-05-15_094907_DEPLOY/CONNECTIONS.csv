@@ -1,4 +1,0 @@
-"COD_CONNECTION","COD_AREA_PHASE","COD_TYPE_PHASE","DES_CONNECTION","COD_PATH_0","COD_PATH_1","COD_PATH_2","COD_PATH_3"
-"EDW_LAND_RAW_LOW","SRC","DC","Description for TPCH_SF_LOW Connection","bn94810.west-us-2.azure.snowflakecomputing.com","EDW_DES","DC_DATA_PSA","-9"
-"EDW_LAND_RAW_MID","SRC","DC","Description for TPCH_SF_MID Connection","bn94810.west-us-2.azure.snowflakecomputing.com","EDW_PRE","DC_DATA_PSA","-9"
-"EDW_LAND_RAW_BIG","SRC","DC","Description for TPCH_SF_BIG Connection","bn94810.west-us-2.azure.snowflakecomputing.com","EDW","DC_DATA_PSA","-9"

@@ -11,3 +11,4 @@ meta_vault:
       warehouse:  "{{ env_var('SNOW_WAREHOUSE') }}"
       threads:    4
   target: dev
+

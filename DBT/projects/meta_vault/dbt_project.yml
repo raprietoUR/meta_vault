@@ -119,8 +119,28 @@ models:
         +tags:
           - gen
           - snowflake
+      GEN_LOAD_DATASETS_1:
+        alias: datasets_1
+        +tags:
+          - gen
+          - snowflake
+      GEN_LOAD_DATASETS_2:
+        alias: datasets
+        +tags:
+          - gen
+          - snowflake
       GEN_LOAD_DATASETS_FIELDS_0:
         alias: datasets_fields_0
+        +tags:
+          - gen
+          - snowflake
+      GEN_LOAD_DATASETS_FIELDS_1:
+        alias: datasets_fields_1
+        +tags:
+          - gen
+          - snowflake
+      GEN_LOAD_DATASETS_FIELDS_2:
+        alias: datasets_fields_2
         +tags:
           - gen
           - snowflake

@@ -1,4 +1,0 @@
-"COD_DATASET","ID","COD_DATASET_CHILD","COD_DATASET_NAME","DESC"
-"DS_CUSTOMER","1","DS_SG_CUSTOMER_DETAILS","CUSTOMER_DETAILS","Información complementaria de Customer"
-"DS_CUSTOMER","2","DS_SG_CUSTOMER_CONTACT","CUSTOMER_CONTACT","Información de contacto de Customer"
-"DS_CUS_NATION","1","DS_SG_CUSTOMER_NATION","CUSTOMER_NATION_DETAILS","Información de contacto de Cus_Nation"
