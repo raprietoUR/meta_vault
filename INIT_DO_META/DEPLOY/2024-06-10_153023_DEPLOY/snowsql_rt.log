@@ -1,0 +1,26 @@
+2024-06-10 15:30:57,258 (133/MainThread) __main__ ERROR      eventloop:811  - error with sql: 'COPY INTO RAW_DATA.RELATIONSHIPS_TMP FROM @~/UPLOADS/RELATIONSHIPS.csv FILE_FORMAT = ( TYPE = CSV,  FIELD_OPTIONALLY_ENCLOSED_BY = \'"\' , SKIP_HEADER = 1, NULL_IF = (\'[NULL]\', \'\\N\',\'NULL\', \'NUL\') );'
+Traceback (most recent call last):
+  File "eventloop.py", line 755, in run_cli
+  File "snowflake/cli/sqlexecute.py", line 491, in run
+  File "snowflake/cli/sqlexecute.py", line 574, in execute_normal_sql
+  File "snowflake/connector/cursor.py", line 908, in execute
+  File "snowflake/connector/errors.py", line 290, in errorhandler_wrapper
+  File "snowflake/connector/errors.py", line 345, in hand_to_other_handler
+  File "snowflake/connector/errors.py", line 221, in default_errorhandler
+snowflake.connector.errors.ProgrammingError: 100080 (22000): Number of columns in file (5) does not match that of the corresponding table (9), use file format option error_on_column_count_mismatch=false to ignore this error
+  File '@~/UPLOADS/RELATIONSHIPS.csv.gz', line 2, character 103
+  Row 1, column "RELATIONSHIPS_TMP"["TARGET_COD_DATASET":5]
+  If you would like to continue loading when an error is encountered, use other values such as 'SKIP_FILE' or 'CONTINUE' for the ON_ERROR option. For more information on loading options, please run 'info loading_data' in a SQL client.
+2024-06-10 15:30:58,041 (133/MainThread) __main__ ERROR      eventloop:811  - error with sql: 'COPY INTO RAW_DATA.DATASETS_FIELDS_TMP FROM @~/UPLOADS/DATASETS_FIELDS.csv FILE_FORMAT = ( TYPE = CSV,  FIELD_OPTIONALLY_ENCLOSED_BY = \'"\' , SKIP_HEADER = 1, NULL_IF = (\'[NULL]\', \'\\N\',\'NULL\', \'NUL\') );'
+Traceback (most recent call last):
+  File "eventloop.py", line 755, in run_cli
+  File "snowflake/cli/sqlexecute.py", line 491, in run
+  File "snowflake/cli/sqlexecute.py", line 574, in execute_normal_sql
+  File "snowflake/connector/cursor.py", line 908, in execute
+  File "snowflake/connector/errors.py", line 290, in errorhandler_wrapper
+  File "snowflake/connector/errors.py", line 345, in hand_to_other_handler
+  File "snowflake/connector/errors.py", line 221, in default_errorhandler
+snowflake.connector.errors.ProgrammingError: 100080 (22000): Number of columns in file (8) does not match that of the corresponding table (6), use file format option error_on_column_count_mismatch=false to ignore this error
+  File '@~/UPLOADS/DATASETS_FIELDS.csv.gz', line 3, character 1
+  Row 1 starts at line 2, column "DATASETS_FIELDS_TMP"[8]
+  If you would like to continue loading when an error is encountered, use other values such as 'SKIP_FILE' or 'CONTINUE' for the ON_ERROR option. For more information on loading options, please run 'info loading_data' in a SQL client.

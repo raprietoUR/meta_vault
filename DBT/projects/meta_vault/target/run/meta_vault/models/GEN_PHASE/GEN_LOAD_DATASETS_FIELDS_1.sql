@@ -1,18 +1,11 @@
-
+-- back compat for old kwarg name
   
+  begin;
     
 
-        create or replace transient table edw.gen_phase.datasets_fields_1
-         as
+        insert into edw.gen_phase.datasets_fields_1 ("COD_DATASET", "ID_ORDER", "COD_DATASET_FIELD", "COD_TYPE", "COD_COLUMN_NAME_TARGET", "SW_TRACK_DIFF", "COLUMN_VALUE_DEFAULT_FX", "SW_VIRTUAL_FIELD_VALUE", "DESC_BUSINESS_DESCRIPTION")
         (
-
-SELECT SEG.COD_DATASET_CHILD COD_DATASET, DS_FIELDS.ID_ORDER, DS_FIELDS.COD_DATASET_FIELD, DS_FIELDS.COD_TYPE, DS_FIELDS.COD_COLUMN_NAME_TARGET, '0' SW_TRACK_DIFF /* BK, PK, SQ a 0*/, DS_FIELDS.SW_ACTIVE_VALUE_DEFAULT, DS_FIELDS.COLUMN_VALUE_DEFAULT_FX, '0' SW_VIRTUAL_FIELD_VALUE, DS_FIELDS.DESC_BUSINESS_DESCRIPTION
-, DS_FIELDS.SW_CLUSTERIZABLE
-FROM  edw.gen_phase.datasets_fields_0 DS_FIELDS
-INNER JOIN  edw.gen_phase.datasets_segments SEG  ON DS_FIELDS.COD_DATASET = SEG.COD_DATASET
-WHERE DS_FIELDS.COD_TYPE IN ('BK','PK','SQ')
-UNION ALL
-SELECT * FROM  edw.gen_phase.datasets_fields_0
+            select "COD_DATASET", "ID_ORDER", "COD_DATASET_FIELD", "COD_TYPE", "COD_COLUMN_NAME_TARGET", "SW_TRACK_DIFF", "COLUMN_VALUE_DEFAULT_FX", "SW_VIRTUAL_FIELD_VALUE", "DESC_BUSINESS_DESCRIPTION"
+            from edw.gen_phase.datasets_fields_1__dbt_tmp
         );
-      
-  
+    commit;
