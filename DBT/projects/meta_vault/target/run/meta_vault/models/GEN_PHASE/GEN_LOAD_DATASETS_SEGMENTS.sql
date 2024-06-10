@@ -1,11 +1,60 @@
--- back compat for old kwarg name
+
   
-  begin;
     
 
-        insert into edw.gen_phase.datasets_segments ("ID_MODEL_RUN", "COD_DATASET", "ID_SEGMENT", "COD_DATASET_CHILD", "COD_DATASET_NAME", "DESC_BUSINESS_DEFINITION")
+        create or replace transient table edw.gen_phase.datasets_segments
+         as
         (
-            select "ID_MODEL_RUN", "COD_DATASET", "ID_SEGMENT", "COD_DATASET_CHILD", "COD_DATASET_NAME", "DESC_BUSINESS_DEFINITION"
-            from edw.gen_phase.datasets_segments__dbt_tmp
+
+  
+  
+
+-- depends on: edw.gen_phase.npsa_init
+
+WITH AUTOMATED_DS AS 
+(
+	SELECT 
+	COD_TYPE ID_TYPE_SEGMENT
+	,COD_DATASET
+	,1 ID_SEGMENT
+	,'DS_SG_'||SUBSTRING(COD_DATASET,4) COD_DATASET_CHILD
+	,COD_DATASET_NAME
+	,DESC_BUSINESS_DEFINITION
+	,ID_MODEL_RUN
+	,DT_MODEL_LOAD
+	,CURRENT_TIMESTAMP DT_LOAD	
+FROM edw.raw_data.datasets 
+WHERE SW_AUTOMATED_DV = '1'
+)
+,DATATASETS_ALL AS 
+(
+	SELECT TMP.ID_MODEL_RUN,
+		TMP.COD_DATASET,
+		TMP.ID ID_SEGMENT,
+		TMP.COD_DATASET_CHILD,
+		TMP.COD_DATASET_NAME,
+		TMP.DESC_BUSINESS_DEFINITION,
+	FROM  edw.raw_data.datasets_segments TMP
+	UNION 
+	SELECT TMP.ID_MODEL_RUN
+	, TMP.COD_DATASET
+	, TMP.ID_SEGMENT
+	, TMP.COD_DATASET_CHILD
+	, TMP.COD_DATASET_NAME
+	, TMP.DESC_BUSINESS_DEFINITION
+	FROM AUTOMATED_DS TMP
+	)
+
+SELECT TMP.ID_MODEL_RUN
+	, TMP.COD_DATASET
+	, TMP.ID_SEGMENT
+	, TMP.COD_DATASET_CHILD
+	, TMP.COD_DATASET_NAME
+	, TMP.DESC_BUSINESS_DEFINITION
+FROM  DATATASETS_ALL TMP
+INNER JOIN  edw.gen_phase.model_load_runs_last M
+ ON TMP.ID_MODEL_RUN=M.ID_MODEL_RUN
+
         );
-    commit;
+      
+  
