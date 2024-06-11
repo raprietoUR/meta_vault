@@ -1,5 +1,5 @@
 {
     "dbt.enableNewLineagePanel": true,
-    "dbt.enableNewQueryPanel": true,
+    "dbt.enableNewQueryPanel": false,
     "dbt.perspectiveTheme": "Vintage"
 }

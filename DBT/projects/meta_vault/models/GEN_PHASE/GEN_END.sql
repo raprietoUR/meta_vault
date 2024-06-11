@@ -3,7 +3,7 @@
   
   post_hook=["DROP TABLE {{this}}"]) }}
 
---depends_on: {{ ref('GEN_LOAD_DATASETS_0') }}
+--depends_on: {{ ref('GEN_LOAD_ELEMENTS') }}
 
 
 select null def
