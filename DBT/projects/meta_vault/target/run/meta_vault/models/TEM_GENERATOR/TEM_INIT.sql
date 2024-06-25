@@ -2,7 +2,7 @@
   
     
 
-        create or replace transient table edw.gen_phase.TEM_INIT
+        create or replace transient table edw.tem_generator.tem_init
          as
         (
 

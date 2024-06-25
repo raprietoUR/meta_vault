@@ -2,19 +2,22 @@
   
     
 
-        create or replace transient table edw.gen_phase.hubs_templates
+        create or replace transient table edw.tem_generator.hubs_templates
          as
         (
 
+--depends_on: edw.tem_generator.tem_init
+
+
 WITH ORIG_BBDD AS (
-    SELECT DIM.COD_DATASET, CON.COD_PATH_1||'.'||CON.COD_PATH_2||'.' AS BBDD_PATH
+    SELECT DIM.COD_DATASET, CON.COD_PATH_1||'.'||CON.COD_PATH_2||'.' AS BBDD_PATH, CON.COD_PATH_1 BBDD
     FROM edw.gen_phase.elements DIM 
         JOIN edw.gen_phase.setconnection_connections SETCON ON DIM.COD_SETCONNECTION = SETCON.COD_SETCONNECTION
         JOIN edw.gen_phase.connections CON ON SETCON.COD_CONNECTION = CON.COD_CONNECTION
         JOIN edw.gen_phase.environment_connections ECON ON CON.COD_CONNECTION = ECON.COD_CONNECTION
         WHERE ECON.COD_ENVIRONMENT = 'PRO'
 )
-SELECT DV_ELEMENT.COD_DATASET,
+SELECT DISTINCT DV_ELEMENT.COD_DATASET,
     (SELECT 'MD5('||LISTAGG(C2.COD_DATASET_FIELD, ',') WITHIN GROUP (ORDER BY C2.ID_ORDER)||') AS HUB_ID'                                                               
 				FROM edw.gen_phase.elements C2 
                 WHERE DV_ELEMENT.COD_DATASET= C2.COD_DATASET 
@@ -32,9 +35,16 @@ SELECT DV_ELEMENT.COD_DATASET,
     (SELECT LISTAGG(C2.COD_DATASET_FIELD ||' AS ' ||C2.COD_COLUMN_NAME_TARGET, ',') WITHIN GROUP (ORDER BY C2.ID_ORDER)                          
 			FROM edw.gen_phase.elements C2 WHERE DV_ELEMENT.COD_DATASET= C2.COD_DATASET                                                                                                                                                                            
 			AND C2.COD_TYPE LIKE '%BK%') LIST_TARGET_BK,
-    'SELECT HUB_ID AS '||DV_ELEMENT.COD_DATASET_NAME||', '||LIST_AKA
-        ||' FROM (SELECT '||LIST_TARGET_PK||', '||LIST_TARGET_BK||' FROM '||ODB.BBDD_PATH||DV_ELEMENT.COD_DATASET_ORIGIN||')'
-    --'CREATE TABLE '||COD_TYPE_DATASET||'_'||COD_DATASET_NAME||' AS ('||query||')' 
+    (SELECT LISTAGG('TMP.'||C2.COD_COLUMN_NAME_TARGET, ',') WITHIN GROUP (ORDER BY C2.COD_TYPE DESC, C2.ID_ORDER)                          
+			FROM edw.gen_phase.elements C2 WHERE DV_ELEMENT.COD_DATASET= C2.COD_DATASET) LIST_AKA_TMP,       
+    'SELECT HUB_ID AS HUB_ID_'||DV_ELEMENT.COD_DATASET_NAME||', '||LIST_AKA
+        ||' FROM (SELECT '||LIST_TARGET_PK||', '||LIST_TARGET_BK||' FROM '||ODB.BBDD_PATH||DV_ELEMENT.COD_DATASET_ORIGIN||')' CREATE_QUERY,
+    'CREATE TABLE '||ODB.BBDD||'.DC_DATA_RDV.'||COD_TYPE_DATASET||'_'||COD_DATASET_NAME||' AS ('||CREATE_QUERY||')'  CREATE_IFNOT,
+    'SELECT CASE WHEN COUNT(1)>0 THEN ''Y'' ELSE ''N'' END SW_EXISTE FROM EDW.INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG || ''.'' || TABLE_SCHEMA || ''.'' || TABLE_NAME = '''||ODB.BBDD_PATH||DV_ELEMENT.COD_DATASET_NAME||''';' CHECK_IF_EXISTS,
+    'SELECT DISTINCT '||LIST_AKA_TMP||' FROM ('||CREATE_QUERY||') TMP LEFT JOIN '||ODB.BBDD||'.DC_DATA_RDV.'||COD_TYPE_DATASET||'_'||COD_DATASET_NAME 
+    ||' HUB ON TMP.HUB_ID_'||DV_ELEMENT.COD_DATASET_NAME||' = HUB.'||DV_ELEMENT.COD_DATASET_NAME INSERT_QUERY,
+    ' WHERE HUB.'||DV_ELEMENT.COD_DATASET_NAME||' IS NULL' INSERT_WHERE_CLAUSE,
+    'INSERT INTO '||ODB.BBDD||'.DC_DATA_RDV.'||COD_TYPE_DATASET||'_'||COD_DATASET_NAME||' '||INSERT_QUERY||INSERT_WHERE_CLAUSE INSERT_IF
 FROM edw.gen_phase.elements DV_ELEMENT 
     JOIN ORIG_BBDD ODB ON DV_ELEMENT.COD_DATASET = ODB.COD_DATASET
 WHERE COD_TYPE_DATASET = 'HUB'

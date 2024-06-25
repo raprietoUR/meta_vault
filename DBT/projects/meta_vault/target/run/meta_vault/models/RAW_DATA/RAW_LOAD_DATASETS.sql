@@ -1,26 +1,11 @@
-
+-- back compat for old kwarg name
   
+  begin;
     
 
-        create or replace transient table edw.raw_data.datasets
-         as
+        insert into edw.raw_data.datasets ("COD_SETCONNECTION", "COD_DATASET", "COD_TYPE", "COD_MODEL", "SW_AUTOMATED_DV", "COD_TYPE_LOAD_SOURCE", "COD_DATASET_ORIGIN", "COD_DATASET_NAME", "COD_TYPE_ENTITY", "COD_DATASET_BUSINESS", "DESC_BUSINESS_DEFINITION", "ID_MODEL_RUN", "DT_MODEL_LOAD", "DT_LOAD")
         (
--- depends_on: edw.raw_data.raw_init
-
-SELECT 		
-	T.*,
-	M.ID_MODEL_RUN,
-	M.DT_MODEL_LOAD,
-	CURRENT_TIMESTAMP DT_LOAD
-	FROM  EDW.raw_data.datasets_tmp T
-LEFT JOIN (SELECT
-			COD_MODEL,
-			DT_MODEL_LOAD,
-			ID_MODEL_RUN,
-			ROW_NUMBER() OVER (PARTITION BY COD_MODEL ORDER BY DT_MODEL_LOAD DESC) ULTIMO_REG
-		FROM  edw.raw_data.model_load_runs WHERE COD_TYPE_RUN='COD_TYPE_RUN') M
-ON M.COD_MODEL = 'COD_MODEL'
-AND M.ULTIMO_REG = 1
+            select "COD_SETCONNECTION", "COD_DATASET", "COD_TYPE", "COD_MODEL", "SW_AUTOMATED_DV", "COD_TYPE_LOAD_SOURCE", "COD_DATASET_ORIGIN", "COD_DATASET_NAME", "COD_TYPE_ENTITY", "COD_DATASET_BUSINESS", "DESC_BUSINESS_DEFINITION", "ID_MODEL_RUN", "DT_MODEL_LOAD", "DT_LOAD"
+            from edw.raw_data.datasets__dbt_tmp
         );
-      
-  
+    commit;

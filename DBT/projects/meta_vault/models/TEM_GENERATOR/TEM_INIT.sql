@@ -1,4 +1,4 @@
-{{ config(schema='gen_phase',
+{{ config(schema='tem_generator',
   materialized='table',
   
   post_hook=["DROP TABLE {{this}}"]) }}

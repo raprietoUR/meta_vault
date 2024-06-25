@@ -1,8 +1,11 @@
 {{ config(
-    schema='gen_phase',
+    schema='tem_generator',
     alias='hubs_templates',
     materialized='incremental'
 ) }}
+
+--depends_on: {{ ref('TEM_INIT') }}
+
 
 WITH ORIG_BBDD AS (
     SELECT DIM.COD_DATASET, CON.COD_PATH_1||'.'||CON.COD_PATH_2||'.' AS BBDD_PATH, CON.COD_PATH_1 BBDD
